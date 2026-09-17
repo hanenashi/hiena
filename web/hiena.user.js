@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Hiena Mobile
 // @namespace    https://github.com/hanenashi/hiena
-// @version      0.1.0
+// @version      0.1.1
 // @description  Make Hyena.cz readable on phones without changing its desktop character.
 // @match        https://hyena.cz/*
 // @match        https://www.hyena.cz/*
@@ -19,16 +19,31 @@
 
   const cssUrl =
     "https://raw.githubusercontent.com/hanenashi/hiena/main/web/hyena-mobile.css";
+  let viewportObserver;
 
   function ensureViewport() {
     if (document.querySelector("meta[name='viewport']")) {
+      viewportObserver?.disconnect();
+      viewportObserver = undefined;
       return;
     }
+
+    const parent = document.head || document.documentElement;
+    if (!parent) {
+      if (!viewportObserver) {
+        viewportObserver = new MutationObserver(ensureViewport);
+        viewportObserver.observe(document, { childList: true, subtree: true });
+      }
+      return;
+    }
+
+    viewportObserver?.disconnect();
+    viewportObserver = undefined;
 
     const viewport = document.createElement("meta");
     viewport.name = "viewport";
     viewport.content = "width=device-width, initial-scale=1, viewport-fit=cover";
-    (document.head || document.documentElement).appendChild(viewport);
+    parent.appendChild(viewport);
   }
 
   function addCss(css) {
