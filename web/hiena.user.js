@@ -1,8 +1,10 @@
 // ==UserScript==
 // @name         Hiena Mobile
 // @namespace    https://github.com/hanenashi/hiena
-// @version      0.1.1
+// @version      0.1.2
 // @description  Make Hyena.cz readable on phones without changing its desktop character.
+// @icon         https://raw.githubusercontent.com/hanenashi/hiena/main/assets/hiena-icon.png
+// @icon64       https://raw.githubusercontent.com/hanenashi/hiena/main/assets/hiena-icon.png
 // @match        https://hyena.cz/*
 // @match        https://www.hyena.cz/*
 // @match        http://hyena.cz/*

@@ -1,3 +1,11 @@
+<p align="center">
+  <img src="assets/hiena.png" alt="Hiena — pixel-art hyena holding a code tag" width="400">
+</p>
+
+<p align="center">
+  <strong><a href="https://raw.githubusercontent.com/hanenashi/hiena/main/web/hiena.user.js">Install Hiena userscript</a></strong>
+</p>
+
 # Hiena
 
 A small mobile readability layer for [Hyena.cz](https://hyena.cz/).
@@ -33,6 +41,9 @@ https://raw.githubusercontent.com/hanenashi/hiena/main/web/hyena-mobile.css
 - `web/hiena.user.js` — viewport injection, CSS loading, and accessible mobile
   menu controls.
 - `web/hyena-mobile.css` — all responsive presentation rules.
+- `assets/hiena.png` — README artwork supplied from Teneichan.
+- `assets/hiena-icon.png` — lightweight userscript icon derived from that
+  artwork.
 
 The changes are scoped to screens up to 780 px wide. The original desktop
 layout is not redesigned.
