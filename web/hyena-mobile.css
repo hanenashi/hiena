@@ -1,0 +1,301 @@
+/*
+ * Responsive layer for Hyena.cz.
+ * Requires a device-width viewport; web/hiena.user.js supplies it.
+ */
+
+.hiena-mobile-header,
+.hiena-menu-backdrop,
+.hiena-menu-close {
+  display: none;
+}
+
+@media screen and (max-width: 780px) {
+  :root {
+    color-scheme: light;
+    font-size: 16px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    min-width: 0;
+    background: #eee8da;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    min-width: 0;
+    margin: 0;
+    overflow-x: hidden;
+    background: #fffdf8;
+    color: #151515;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  body.hiena-menu-open {
+    overflow: hidden;
+  }
+
+  font {
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  a {
+    color: #001ca8;
+    overflow-wrap: anywhere;
+    text-underline-offset: 0.12em;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .hiena-mobile-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    min-height: 3.5rem;
+    padding: calc(0.45rem + env(safe-area-inset-top)) 0.8rem 0.45rem;
+    border-bottom: 3px double #181818;
+    background: rgba(247, 241, 226, 0.97);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16);
+  }
+
+  .hiena-mobile-brand {
+    color: #111;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .hiena-mobile-brand span {
+    font-size: 0.72em;
+    font-style: italic;
+    font-weight: 600;
+  }
+
+  .hiena-menu-toggle,
+  .hiena-menu-close {
+    min-height: 2.75rem;
+    border: 1px solid #222;
+    border-radius: 0.25rem;
+    background: #fff;
+    color: #111;
+    font: 700 0.85rem/1 system-ui, sans-serif;
+    cursor: pointer;
+  }
+
+  .hiena-menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    padding: 0.45rem 0.65rem;
+  }
+
+  .hiena-menu-toggle [aria-hidden="true"] {
+    font-size: 1.25rem;
+    font-weight: 400;
+  }
+
+  body > table:first-of-type,
+  body > table:first-of-type > tbody,
+  body > table:first-of-type > tbody > tr,
+  body > table:first-of-type > tbody > tr > td:first-child {
+    display: block;
+    width: 100% !important;
+    min-width: 0;
+  }
+
+  body > table:first-of-type {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 0.75rem clamp(0.85rem, 4vw, 1.35rem) 2.5rem;
+    table-layout: auto;
+  }
+
+  /* The userscript's compact bar replaces the 550 px image masthead. */
+  body > table:first-of-type > tbody > tr > td:first-child > a:first-of-type,
+  body > table:first-of-type table[background*="fp_bg_center3"] {
+    display: none;
+  }
+
+  body > table:first-of-type table:not(.hiena-mobile-menu) {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-inline: 0 !important;
+  }
+
+  body > table:first-of-type table:not(.hiena-mobile-menu) td {
+    max-width: 100%;
+  }
+
+  body > table:first-of-type table[width="550"] {
+    margin: 0 0 0.85rem !important;
+  }
+
+  body > table:first-of-type table[width="500"] {
+    margin: 1.1rem 0 0.25rem !important;
+  }
+
+  body > table:first-of-type ul {
+    margin: 0.5rem 0 1rem;
+    padding-left: 1.35rem;
+  }
+
+  body > table:first-of-type li {
+    margin: 0.18rem 0;
+    padding-left: 0.12rem;
+  }
+
+  body > table:first-of-type p {
+    margin: 0.85rem 0;
+  }
+
+  body > table:first-of-type div {
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+
+  body > table:first-of-type font[color="#000099"][size="+1"],
+  body > table:first-of-type font[color="#000099"][size="4"] {
+    display: inline;
+    font-size: 1.32rem;
+    line-height: 1.2;
+  }
+
+  body > table:first-of-type img[src*="polcr"],
+  body > table:first-of-type img[src*="pes1"] {
+    margin: 0.15rem 0.45rem 0.15rem 0;
+  }
+
+  /* The complete legacy right rail becomes one off-canvas menu. */
+  .hiena-mobile-menu {
+    position: fixed;
+    inset: 0 0 0 auto;
+    z-index: 80;
+    display: block;
+    width: min(92vw, 24rem) !important;
+    height: 100dvh;
+    margin: 0 !important;
+    padding: calc(4rem + env(safe-area-inset-top)) 1rem
+      calc(1.5rem + env(safe-area-inset-bottom));
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-left: 3px double #1c1c1c;
+    background: #eee8da;
+    box-shadow: -8px 0 24px rgba(0, 0, 0, 0.3);
+    color: #111;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.94rem;
+    line-height: 1.42;
+    transform: translateX(105%);
+    transition: transform 180ms ease-out;
+    overscroll-behavior: contain;
+  }
+
+  body.hiena-menu-open .hiena-mobile-menu {
+    transform: translateX(0);
+  }
+
+  .hiena-mobile-menu > tbody,
+  .hiena-mobile-menu > tbody > tr {
+    display: block;
+    width: 100%;
+  }
+
+  .hiena-mobile-menu > tbody > tr > td {
+    display: none;
+  }
+
+  .hiena-mobile-menu > tbody > tr > td[background*="fp_bg_right7"] {
+    display: block;
+    width: 100% !important;
+    padding: 0.1rem 0.2rem;
+    background-color: transparent !important;
+  }
+
+  .hiena-mobile-menu img[src*="hyena_right_"] {
+    display: block;
+    width: 199px;
+    max-width: 100%;
+    margin: 1rem 0 0.55rem;
+  }
+
+  .hiena-mobile-menu a {
+    display: inline-block;
+    min-height: 1.55rem;
+  }
+
+  .hiena-mobile-menu form,
+  .hiena-mobile-menu select,
+  .hiena-mobile-menu input:not([type="hidden"]) {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hiena-mobile-menu select,
+  .hiena-mobile-menu input:not([type="hidden"]) {
+    min-height: 2.75rem;
+    margin: 0.2rem 0;
+    padding: 0.45rem 0.55rem;
+    border: 1px solid #777;
+    border-radius: 0.2rem;
+    background: #fff;
+    font: 1rem/1.2 system-ui, sans-serif;
+  }
+
+  .hiena-menu-close {
+    position: absolute;
+    top: calc(0.65rem + env(safe-area-inset-top));
+    right: 0.75rem;
+    z-index: 2;
+    display: grid;
+    width: 2.75rem;
+    padding: 0;
+    place-items: center;
+    font-size: 1.7rem;
+    font-weight: 400;
+  }
+
+  .hiena-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: rgba(0, 0, 0, 0.48);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 180ms ease-out;
+  }
+
+  body.hiena-menu-open .hiena-menu-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hiena-mobile-menu,
+    .hiena-menu-backdrop {
+      transition: none;
+    }
+  }
+}
