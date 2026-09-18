@@ -162,6 +162,17 @@
     padding-left: 0.12rem;
   }
 
+  /*
+   * The legacy source never closes the daily-news list, so browsers parse the
+   * article and dog story inside its final <li>. Pull that complete story block
+   * back across the list indentation to restore equal mobile gutters.
+   */
+  body > table:first-of-type ul > li:last-child > div[style*="width:500px"] {
+    width: calc(100% + 1.5rem) !important;
+    max-width: none;
+    margin-left: -1.5rem;
+  }
+
   body > table:first-of-type p {
     margin: 0.85rem 0;
   }

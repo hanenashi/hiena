@@ -41,6 +41,8 @@ https://raw.githubusercontent.com/hanenashi/hiena/main/web/hyena-mobile.css
 - `web/hiena.user.js` — viewport injection, CSS loading, and accessible mobile
   menu controls.
 - `web/hyena-mobile.css` — all responsive presentation rules.
+- `web/hiena-mobile.js` — mobile menu controls for direct installation on the
+  Hyena server.
 - `assets/hiena.png` — README artwork supplied from Teneichan.
 - `assets/hiena-icon.png` — lightweight userscript icon derived from that
   artwork.

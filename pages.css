@@ -110,24 +110,167 @@ h2 {
   white-space: nowrap;
 }
 
-.explanation {
-  max-width: 43rem;
+.explanation,
+.install-guide {
+  max-width: 48rem;
 }
 
-.explanation ol {
-  margin: 0 0 1.35rem;
-  padding-left: 1.25rem;
+.change-summary {
+  margin: 1.8rem 0 0;
+  border-top: 1px solid #bcb3a2;
 }
 
-.explanation li {
-  margin: 0.45rem 0;
-  padding-left: 0.25rem;
+.change-summary > div {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: 1.2rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid #bcb3a2;
 }
 
-.explanation code {
+.change-summary dt {
+  font-weight: 700;
+}
+
+.change-summary dd {
+  margin: 0;
+}
+
+.explanation code,
+.install-guide :not(pre) > code {
   padding: 0.08rem 0.25rem;
   background: #e7dfcf;
   font-size: 0.92em;
+}
+
+.section-intro {
+  max-width: 43rem;
+  font-size: 1.08rem;
+}
+
+.install-steps {
+  margin: 2rem 0 2.5rem;
+  padding: 0;
+  list-style: none;
+  counter-reset: install-step;
+}
+
+.install-steps > li {
+  position: relative;
+  padding: 1.7rem 0 1.7rem 3.5rem;
+  border-top: 1px solid #bcb3a2;
+  counter-increment: install-step;
+}
+
+.install-steps > li:last-child {
+  border-bottom: 1px solid #bcb3a2;
+}
+
+.install-steps > li::before {
+  position: absolute;
+  top: 1.52rem;
+  left: 0;
+  display: grid;
+  width: 2.3rem;
+  height: 2.3rem;
+  border: 1px solid #1b1b1b;
+  border-radius: 50%;
+  place-items: center;
+  content: counter(install-step);
+  font: 700 0.9rem/1 Arial, Helvetica, sans-serif;
+}
+
+h3 {
+  margin: 0 0 0.6rem;
+  font-size: 1.18rem;
+}
+
+.server-path {
+  margin: 0.8rem 0;
+}
+
+.server-path code {
+  display: inline-block;
+  padding: 0.5rem 0.65rem !important;
+  border: 1px solid #bcb3a2;
+  background: #fff !important;
+  font-size: 0.95rem !important;
+}
+
+.note {
+  margin-bottom: 0;
+  color: #4a463f;
+  font-size: 0.94rem;
+}
+
+.code-box {
+  margin: 1rem 0;
+  overflow: hidden;
+  border: 1px solid #2c2b29;
+  background: #171717;
+  color: #f7f1e4;
+}
+
+.code-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 2.8rem;
+  padding: 0.45rem 0.55rem 0.45rem 0.8rem;
+  border-bottom: 1px solid #4c4a45;
+  font: 700 0.78rem/1.2 Arial, Helvetica, sans-serif;
+}
+
+.code-toolbar code {
+  color: inherit;
+}
+
+.code-toolbar button {
+  min-height: 2rem;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid #d9d2c5;
+  border-radius: 0.2rem;
+  background: transparent;
+  color: #fff;
+  font: 700 0.78rem/1 Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
+
+.code-toolbar button:hover,
+.code-toolbar button:focus-visible {
+  background: #fff;
+  color: #171717;
+}
+
+.code-toolbar button.is-copied {
+  border-color: #8bd69b;
+  color: #aef0bc;
+}
+
+.code-toolbar button.copy-failed {
+  border-color: #efb1a2;
+  color: #ffd0c5;
+}
+
+.code-box pre {
+  margin: 0;
+  padding: 1rem;
+  overflow-x: auto;
+  font: 0.84rem/1.55 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  tab-size: 2;
+  -webkit-overflow-scrolling: touch;
+}
+
+.code-box pre code {
+  font: inherit;
+  white-space: pre;
+}
+
+.final-note {
+  margin-top: 1.25rem;
+  padding-left: 1rem;
+  border-left: 3px solid #181818;
 }
 
 a {
@@ -166,5 +309,23 @@ a {
 
   .editions a > span {
     margin-top: 0.35rem;
+  }
+
+  .change-summary > div {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+
+  .install-steps > li {
+    padding-left: 0;
+  }
+
+  .install-steps > li::before {
+    position: static;
+    margin-bottom: 0.8rem;
+  }
+
+  .code-toolbar {
+    align-items: flex-start;
   }
 }

@@ -7,6 +7,7 @@
     <title>Hiena — mobilní ukázka Hyeny</title>
     <link rel="icon" href="assets/hiena-icon.png">
     <link rel="stylesheet" href="pages.css">
+    <script defer src="pages.js"></script>
   </head>
   <body>
     <main>
@@ -45,16 +46,111 @@
 
       <section class="explanation" aria-labelledby="how-heading">
         <h2 id="how-heading">Co je v ukázce změněno</h2>
-        <ol>
-          <li>Jedna značka <code>viewport</code> v hlavičce stránky.</li>
-          <li>Jeden samostatný soubor s mobilním CSS.</li>
-          <li>Krátký JavaScript, který přesune archiv a pravý sloupec do menu.</li>
-        </ol>
         <p>
           Texty, obrázky a původní stolová struktura stránky zůstávají zachované.
           Na běžném počítači se původní vzhled nemění; úprava se aktivuje jen na
           úzkých displejích. Odkazy uvnitř ukázek vedou zpět na skutečný web
           <a href="https://hyena.cz/">hyena.cz</a>.
+        </p>
+        <dl class="change-summary">
+          <div>
+            <dt><code>viewport</code></dt>
+            <dd>Řekne telefonu, aby stránku vykreslil ve skutečné šířce displeje místo zmenšeného desktopu.</dd>
+          </div>
+          <div>
+            <dt>Mobilní CSS</dt>
+            <dd>Na displejích do 780 px zruší pevné šířky a sloupce, nastaví čitelné písmo a stejně široké okraje.</dd>
+          </div>
+          <div>
+            <dt>Krátký JavaScript</dt>
+            <dd>Přidá kompaktní hlavičku a přesune původní archiv, odkazy, hledání a tiráž do vysouvacího menu.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="install-guide" aria-labelledby="install-heading">
+        <h2 id="install-heading">Jak úpravu vložit na server Hyeny</h2>
+        <p class="section-intro">
+          Nejsou potřeba změny redakčního systému ani přepis článků. Stačí na
+          server nahrát dva nové soubory a do společné HTML šablony přidat tři
+          řádky. Tím se úprava automaticky použije na každé vydání vytvořené ze
+          stejné šablony.
+        </p>
+
+        <ol class="install-steps">
+          <li>
+            <h3>Nahrát soubor s CSS</h3>
+            <p>
+              Stáhnout <a href="web/hyena-mobile.css" download><code>hyena-mobile.css</code></a>
+              a na serveru jej uložit sem:
+            </p>
+            <p class="server-path"><code>/css/hyena-mobile.css</code></p>
+            <p class="note">
+              CSS obsahuje pouze pravidla vzhledu. Většina změn je uvnitř
+              <code>@media (max-width: 780px)</code>, takže původní desktopová
+              Hyena zůstane beze změny.
+            </p>
+          </li>
+          <li>
+            <h3>Nahrát soubor s JavaScriptem</h3>
+            <p>
+              Stáhnout <a href="web/hiena-mobile.js" download><code>hiena-mobile.js</code></a>
+              a na serveru jej uložit sem:
+            </p>
+            <p class="server-path"><code>/js/hiena-mobile.js</code></p>
+            <p class="note">
+              Skript nemění text článku ani odkazy. Najde původní pravý sloupec
+              široký 215 px a doplní pouze tlačítka pro jeho otevření a zavření
+              na telefonu.
+            </p>
+          </li>
+          <li>
+            <h3>Přidat tři řádky do společné HTML šablony</h3>
+            <p>
+              Následující kód vložit do části <code>&lt;head&gt;</code>, ideálně za
+              stávající řádek <code>content-type</code> a před
+              <code>&lt;title&gt;</code>:
+            </p>
+            <div class="code-box">
+              <div class="code-toolbar">
+                <span>Tři nové řádky</span>
+                <button type="button" data-copy-target="head-snippet">Kopírovat</button>
+              </div>
+              <pre><code id="head-snippet">&lt;meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"&gt;
+&lt;link rel="stylesheet" href="/css/hyena-mobile.css"&gt;
+&lt;script defer src="/js/hiena-mobile.js"&gt;&lt;/script&gt;</code></pre>
+            </div>
+            <p class="note">
+              Atribut <code>defer</code> zajistí, že se skript spustí až po
+              načtení původního HTML. Cesty začínající lomítkem fungují stejně
+              na titulní stránce i v adresářích jednotlivých ročníků.
+            </p>
+          </li>
+        </ol>
+
+        <h3>Výsledek v původní hlavičce stránky</h3>
+        <p>
+          Začátek stávajícího HTML by potom vypadal přibližně takto. Řádek s
+          kódováním Windows-1250 může zůstat tak, jak je dnes:
+        </p>
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>Ukázka celé části <code>&lt;head&gt;</code></span>
+            <button type="button" data-copy-target="full-head-snippet">Kopírovat</button>
+          </div>
+          <pre><code id="full-head-snippet">&lt;html&gt;
+&lt;head&gt;
+  &lt;meta http-equiv="content-type" content="text/html;charset=windows-1250"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"&gt;
+  &lt;link rel="stylesheet" href="/css/hyena-mobile.css"&gt;
+  &lt;script defer src="/js/hiena-mobile.js"&gt;&lt;/script&gt;
+  &lt;title&gt;The Hyena&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+        </div>
+
+        <p class="final-note">
+          Pokud má server jiné názvy adresářů, stačí upravit dvě cesty v HTML.
+          Samotné soubory nevyžadují instalaci, databázi ani další knihovny.
         </p>
       </section>
     </main>

@@ -17,6 +17,17 @@ await writeFile(
   path.join(outputDir, "hyena-mobile.css"),
   await readFile(path.resolve("web", "hyena-mobile.css")),
 );
+const siteScript = await readFile(path.resolve("web", "hiena-mobile.js"), "utf8");
+await writeFile(
+  path.join(outputDir, "hiena-mobile.js"),
+  siteScript
+    .replace(
+      'href="/" aria-label="The Hyena – dnešní vydání"',
+      'href="../" aria-label="Zpět na přehled ukázky"',
+    )
+    .replace("[Hiena] Legacy sidebar", "[Hiena demo] Legacy sidebar"),
+  "utf8",
+);
 
 function safeBasename(url, contentType) {
   const fallbackExtensions = {
