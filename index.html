@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Hiena — mobilní ukázka Hyeny</title>
+    <link rel="icon" href="assets/hiena-icon.png">
+    <link rel="stylesheet" href="pages.css">
+  </head>
+  <body>
+    <main>
+      <header class="intro">
+        <img src="assets/hiena.png" width="180" height="180" alt="Hiena s programátorskou značkou">
+        <div>
+          <h1>Mobilní ukázka Hyeny</h1>
+          <p class="lead">
+            Dočasná ukázka pro Ondřeje Neffa. Tři pevné kopie skutečných vydání
+            ukazují, jak by dnešní web vypadal po přidání mobilního viewportu,
+            responzivního CSS a malého skriptu pro vysouvací menu.
+          </p>
+        </div>
+      </header>
+
+      <section aria-labelledby="editions-heading">
+        <h2 id="editions-heading">Vyberte vydání</h2>
+        <nav class="editions" aria-label="Ukázková vydání Hyeny">
+          <a href="demo/260918.html">
+            <time datetime="2026-09-18">Pátek 18. září 2026</time>
+            <strong>Rozpočet jde do finále</strong>
+            <span>Otevřít mobilní ukázku <span aria-hidden="true">→</span></span>
+          </a>
+          <a href="demo/260917.html">
+            <time datetime="2026-09-17">Čtvrtek 17. září 2026</time>
+            <strong>Ursula pootevřela Overtonovo okno</strong>
+            <span>Otevřít mobilní ukázku <span aria-hidden="true">→</span></span>
+          </a>
+          <a href="demo/260916.html">
+            <time datetime="2026-09-16">Středa 16. září 2026</time>
+            <strong>Spolupráce a bojovné slogany</strong>
+            <span>Otevřít mobilní ukázku <span aria-hidden="true">→</span></span>
+          </a>
+        </nav>
+      </section>
+
+      <section class="explanation" aria-labelledby="how-heading">
+        <h2 id="how-heading">Co je v ukázce změněno</h2>
+        <ol>
+          <li>Jedna značka <code>viewport</code> v hlavičce stránky.</li>
+          <li>Jeden samostatný soubor s mobilním CSS.</li>
+          <li>Krátký JavaScript, který přesune archiv a pravý sloupec do menu.</li>
+        </ol>
+        <p>
+          Texty, obrázky a původní stolová struktura stránky zůstávají zachované.
+          Na běžném počítači se původní vzhled nemění; úprava se aktivuje jen na
+          úzkých displejích. Odkazy uvnitř ukázek vedou zpět na skutečný web
+          <a href="https://hyena.cz/">hyena.cz</a>.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

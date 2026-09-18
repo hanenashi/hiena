@@ -47,3 +47,21 @@ https://raw.githubusercontent.com/hanenashi/hiena/main/web/hyena-mobile.css
 
 The changes are scoped to screens up to 780 px wide. The original desktop
 layout is not redesigned.
+
+## Three-day Pages demo
+
+The temporary presentation for Ondřej Neff is published at:
+
+```text
+https://hanenashi.github.io/hiena/
+```
+
+It contains fixed UTF-8 snapshots of the September 16–18, 2026 editions with
+the viewport, responsive CSS, and menu JavaScript applied. Snapshot images are
+stored locally; ordinary links lead back to Hyena.cz.
+
+Rebuild the snapshots from their original pages with:
+
+```sh
+node scripts/build-pages-demo.mjs
+```
