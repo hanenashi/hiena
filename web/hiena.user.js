@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Hiena Mobile
 // @namespace    https://github.com/hanenashi/hiena
-// @version      0.1.2
+// @version      0.1.3
 // @description  Make Hyena.cz readable on phones without changing its desktop character.
 // @icon         https://raw.githubusercontent.com/hanenashi/hiena/main/assets/hiena-icon.png
 // @icon64       https://raw.githubusercontent.com/hanenashi/hiena/main/assets/hiena-icon.png
@@ -22,6 +22,57 @@
   const cssUrl =
     "https://raw.githubusercontent.com/hanenashi/hiena/main/web/hyena-mobile.css";
   let viewportObserver;
+
+  function rebuildLegacyLinks(sidebar) {
+    const firstLink = [...sidebar.querySelectorAll("a")].find(
+      (link) => link.textContent.trim() === "NEVIDITELNÝ PES",
+    );
+    const legacyBlock = firstLink?.closest("p");
+    if (!legacyBlock) {
+      return;
+    }
+
+    const definitions = [
+      ["NEVIDITELNÝ PES", "neviditelnypes.zpravy.cz/"],
+      ["ZVÍŘETNÍK", "p_zviretnik.asp"],
+      ["SCI-FI", "p_scifi.asp"],
+      ["WOLESCHKO.CZ", "woleschko.cz/", "Knéblův web"],
+      ["NEFF.CZ", "www.neff.cz/", "Astonův web"],
+      ["Neffova galerie", "galerie/webgalerie/"],
+      ["BOSKOWAN.COM", "boskowan.com/", "Wagnerův web"],
+    ];
+    const originalLinks = [...legacyBlock.querySelectorAll("a[href]")];
+    const list = document.createElement("ul");
+
+    for (const [label, hrefPart, description] of definitions) {
+      const original = originalLinks.find((link) => link.href.includes(hrefPart));
+      if (!original) {
+        continue;
+      }
+
+      const item = document.createElement("li");
+      if (description) {
+        const detail = document.createElement("span");
+        detail.textContent = description;
+        item.appendChild(detail);
+      }
+
+      const link = document.createElement("a");
+      link.href = original.href;
+      link.textContent = label;
+      if (original.target) {
+        link.target = original.target;
+      }
+      item.appendChild(link);
+      list.appendChild(item);
+    }
+
+    const navigation = document.createElement("nav");
+    navigation.className = "hiena-sidebar-links";
+    navigation.setAttribute("aria-label", "Odkazy");
+    navigation.appendChild(list);
+    legacyBlock.replaceWith(navigation);
+  }
 
   function ensureViewport() {
     if (document.querySelector("meta[name='viewport']")) {
@@ -88,6 +139,9 @@
 
     sidebar.id = "hiena-mobile-menu";
     sidebar.classList.add("hiena-mobile-menu");
+    if (window.matchMedia("(max-width: 780px)").matches) {
+      rebuildLegacyLinks(sidebar);
+    }
 
     const header = document.createElement("header");
     header.className = "hiena-mobile-header";
