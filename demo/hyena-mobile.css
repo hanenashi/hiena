@@ -4,6 +4,7 @@
  */
 
 .hiena-mobile-header,
+.hiena-menu-brand,
 .hiena-menu-backdrop,
 .hiena-menu-close {
   display: none;
@@ -110,6 +111,24 @@
   .hiena-menu-toggle [aria-hidden="true"] {
     font-size: 1.25rem;
     font-weight: 400;
+  }
+
+  .hiena-menu-brand {
+    position: absolute;
+    top: calc(0.65rem + env(safe-area-inset-top));
+    left: 1rem;
+    z-index: 2;
+    display: block;
+    width: min(15rem, calc(100% - 5.5rem));
+    height: 2.75rem;
+  }
+
+  .hiena-menu-brand img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: left center;
   }
 
   body > table:first-of-type,

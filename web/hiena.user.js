@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Hiena Mobile
 // @namespace    https://github.com/hanenashi/hiena
-// @version      0.1.3
+// @version      0.1.4
 // @description  Make Hyena.cz readable on phones without changing its desktop character.
 // @icon         https://raw.githubusercontent.com/hanenashi/hiena/main/assets/hiena-icon.png
 // @icon64       https://raw.githubusercontent.com/hanenashi/hiena/main/assets/hiena-icon.png
@@ -167,7 +167,25 @@
     close.type = "button";
     close.setAttribute("aria-label", "Zavřít menu");
     close.textContent = "×";
+
+    const masthead = document.querySelector('img[src*="hyena_titul"]');
+    const menuBrand = document.createElement("a");
+    menuBrand.className = "hiena-menu-brand";
+    menuBrand.href = masthead?.closest("a")?.href || "/";
+    menuBrand.setAttribute("aria-label", "The Hyena – dnešní vydání");
+    if (masthead) {
+      const brandImage = masthead.cloneNode(false);
+      brandImage.removeAttribute("width");
+      brandImage.removeAttribute("height");
+      brandImage.removeAttribute("align");
+      brandImage.alt = "The Hyena";
+      menuBrand.appendChild(brandImage);
+    }
+
     sidebar.insertBefore(close, sidebar.firstChild);
+    if (menuBrand.firstChild) {
+      sidebar.insertBefore(menuBrand, close);
+    }
 
     document.body.insertBefore(backdrop, document.body.firstChild);
     document.body.insertBefore(header, document.body.firstChild);
